@@ -25,7 +25,7 @@
 
 4. Project -> Target -> Build Settings 搜索 Mach-O Type
 
-Mach-O Type选项有Dynamic Library, Static Library, Bundle, Executable等，选择Dynamic Library制作动态库，Static Library制作静态库，Bundled存储资源文件。
+Mach-O Type选项有Dynamic Library, Static Library, Bundle, Executable等，选择Dynamic Library制作动态库，Static Library制作静态库，Bundle存储资源文件。
 
 补充：
 库是共享程序代码的方式，一般分为静态库和动态库。<br>
@@ -51,11 +51,11 @@ a与.framework有什么区别： <br>
 
 6. Project -> Target -> Build Phases -> Complie Sources
 
-添加要编译.h .m文件，Xcode自动将.m文件添加到Complie Sources中，同时可以使用-fno-objc-arc, fobjc-arc分别针对r特定的.m文件进行MRC，ARC内存管理。
+添加要编译.h .m文件，Xcode自动将.m文件添加到Complie Sources中，同时可以使用-fno-objc-arc, fobjc-arc分别针对特定的.m文件进行MRC，ARC内存管理。
 
 7. Project -> Target -> Build Phases -> Headers
 
-将工程Project要暴露的接口.h文件拖到Public中。framework支持模块化，SDK命名尽量不要头文件重名，以便集成SDK时模块化不能使用。SDK资源放到一个bundle下，统一进行管理与调用。
+将工程Project要暴露的接口.h头文件拖到Public中。framework支持模块化，SDK命名尽量不要头文件重名，以便集成SDK时模块化不能使用。SDK资源放到一个bundle下，统一进行管理与调用。
 
 8. Project -> Edit Scheme -> Run -> Build Configuration
 
@@ -63,6 +63,6 @@ a与.framework有什么区别： <br>
 
 9. 合并库和查看库信息
 
-查看架构：使用 lipo -info 查看可执行文件(.a .framework的可执行文件)架构。<br>
-合并架构：使用 lipo -create 真机可执行文件 模拟器可执行文件 -output 输出目录。<br>
+查看架构：使用 lipo -info 查看可执行文件(.a  .framework的可执行文件)架构。<br>
+合并架构：使用 lipo -create 真机可执行文件绝对路径 模拟器可执行文件绝对路径 -output 输出目录/可执行文件。<br>
 移除架构：使用 lipo -remove x86_64 ExamSimpleSdk.framework/ExamSimpleSdk -o ExamSimpleSdk.framework/ExamSimpleSdk
