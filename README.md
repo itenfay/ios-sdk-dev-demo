@@ -21,7 +21,7 @@
 
 3. Project -> Target -> Build Settings 搜索 Valid Architectures
 
-目前支持架构真机(arm64 armv7s)、模拟器(i386 x86_64)就可以，armv7架构不用再支持。
+目前支持的架构：真机(arm64 armv7s)、模拟器(i386 x86_64)。不用再支持armv7架构，以后也不需要支持armv7s架构。
 
 4. Project -> Target -> Build Settings 搜索 Mach-O Type
 
