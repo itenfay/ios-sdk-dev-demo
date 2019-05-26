@@ -2,10 +2,10 @@
 
 此项目在2015年3月23日编写，一个简单封装的ios sdk。ExamSdk为sdk源码，ExamSdkDemo为集成sdk后的demo，代码有点旧，勿喷！当制作自己的SDK时，可以参考本项目或者下面的制作方法。
 
-## QQ技术群交流
+## 技术交流群
 
-欢迎加入QQ技术群(155353383) ，一起探讨技术问题。<br>
-![QQ技术群：155353383](https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/qq155353383.jpg)
+欢迎加入技术交流群(群号:155353383) ，一起探讨技术问题。<br>
+![群号:155353383](https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/qq155353383.jpg)
 
 ## 制作方法
 
@@ -27,7 +27,7 @@
 
 Mach-O Type选项有Dynamic Library, Static Library, Bundle, Executable等，选择Dynamic Library制作动态库，Static Library制作静态库，Bundle存储资源文件。
 
-补充：
+补充：<br>
 库是共享程序代码的方式，一般分为静态库和动态库。<br>
 静态库：链接时完整地拷贝至可执行文件中，被多次使用就有多份冗余拷贝。<br>
 动态库：链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存。 <br>
