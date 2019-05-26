@@ -1,6 +1,6 @@
 # ios-sdk-dev-demo
 
-在2015年3月23日本人编写此项目，一个简单封装的ios sdk。ExamSdk为sdk源码，ExamSdkDemo为集成sdk后的demo，代码有点旧，勿喷！当制作自己的SDK时，可以参考本项目或者下面的制作方法。
+在2015年3月23日编写此项目，一个简单封装的ios sdk。ExamSdk为sdk源码，ExamSdkDemo为集成sdk后的demo，代码有点旧，勿喷！当制作自己的SDK时，可以参考本项目或者下面的制作方法。
 
 ## 技术交流群
 
