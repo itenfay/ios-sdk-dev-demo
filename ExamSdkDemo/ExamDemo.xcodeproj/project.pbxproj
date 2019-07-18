@@ -14,8 +14,6 @@
 		961E6AF11ABFA91700F4EF9D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 961E6AF01ABFA91700F4EF9D /* Images.xcassets */; };
 		961E6AF41ABFA91700F4EF9D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961E6AF21ABFA91700F4EF9D /* LaunchScreen.xib */; };
 		961E6B131ABFAB1300F4EF9D /* DFShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961E6B111ABFAB1300F4EF9D /* DFShowViewController.m */; };
-		961E6B551ABFCF6B00F4EF9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961E6B541ABFCF6B00F4EF9D /* Foundation.framework */; };
-		961E6B571ABFCF7100F4EF9D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961E6B561ABFCF7100F4EF9D /* UIKit.framework */; };
 		961E6B5F1ABFD0C300F4EF9D /* ExamSimpleSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961E6B5E1ABFD0C300F4EF9D /* ExamSimpleSdk.framework */; };
 		96BAEA3A1AEBEA9200A02C30 /* IlibResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 96BAEA391AEBEA9200A02C30 /* IlibResource.bundle */; };
 		96E486821B7B5E6C00D234AB /* twttr-icn-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E4867F1B7B5E6C00D234AB /* twttr-icn-logo.png */; };
@@ -24,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1461BFAB22DF164C00C2C25B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1461BFAC22DF164C00C2C25B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		961E6AE01ABFA91700F4EF9D /* ExamDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExamDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		961E6AE41ABFA91700F4EF9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		961E6AE51ABFA91700F4EF9D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -37,8 +37,6 @@
 		961E6B101ABFAB1300F4EF9D /* DFShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFShowViewController.h; sourceTree = "<group>"; };
 		961E6B111ABFAB1300F4EF9D /* DFShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFShowViewController.m; sourceTree = "<group>"; };
 		961E6B181ABFACE800F4EF9D /* Exam-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Exam-Prefix.pch"; sourceTree = "<group>"; };
-		961E6B541ABFCF6B00F4EF9D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		961E6B561ABFCF7100F4EF9D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		961E6B5E1ABFD0C300F4EF9D /* ExamSimpleSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExamSimpleSdk.framework; sourceTree = "<group>"; };
 		96BAEA391AEBEA9200A02C30 /* IlibResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = IlibResource.bundle; path = ../../IlibResource.bundle; sourceTree = "<group>"; };
 		96E4867F1B7B5E6C00D234AB /* twttr-icn-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "twttr-icn-logo.png"; path = "Images/twttr-icn-logo.png"; sourceTree = "<group>"; };
@@ -51,21 +49,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				961E6B571ABFCF7100F4EF9D /* UIKit.framework in Frameworks */,
 				961E6B5F1ABFD0C300F4EF9D /* ExamSimpleSdk.framework in Frameworks */,
-				961E6B551ABFCF6B00F4EF9D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1461BFAA22DF162700C2C25B /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				1461BFAB22DF164C00C2C25B /* UIKit.framework */,
+				1461BFAC22DF164C00C2C25B /* Foundation.framework */,
+			);
+			name = Framework;
+			path = ExamDemo;
+			sourceTree = "<group>";
+		};
 		961E6AD71ABFA91700F4EF9D = {
 			isa = PBXGroup;
 			children = (
-				961E6B561ABFCF7100F4EF9D /* UIKit.framework */,
-				961E6B541ABFCF6B00F4EF9D /* Foundation.framework */,
 				961E6AE21ABFA91700F4EF9D /* ExamDemo */,
+				1461BFAA22DF162700C2C25B /* Framework */,
 				961E6AE11ABFA91700F4EF9D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -137,10 +142,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = "UQ Interactive";
+				ORGANIZATIONNAME = dyf;
 				TargetAttributes = {
 					961E6ADF1ABFA91700F4EF9D = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = KCBQ48PTUV;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -298,6 +305,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KCBQ48PTUV;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -311,6 +320,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.asd.ExamDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8ebf8545-3140-4357-bbaa-eba173791bc9";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Debug;
@@ -321,6 +331,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KCBQ48PTUV;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -334,6 +346,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.asd.ExamDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8ebf8545-3140-4357-bbaa-eba173791bc9";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Release;

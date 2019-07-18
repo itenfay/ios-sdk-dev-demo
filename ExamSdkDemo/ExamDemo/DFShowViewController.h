@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DFShowViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *anImageView;
+@property (weak  , nonatomic) IBOutlet UIImageView *anImageView;
 @property (strong, nonatomic) UIImage *anImage;
 
 @end

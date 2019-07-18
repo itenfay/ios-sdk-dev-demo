@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface DFLoadingView : UIView
-@property (nonatomic, retain) UIColor *color;
-@property (nonatomic, assign) CGFloat cornerRadius;
+@property (nonatomic, retain) UIColor  *color;
+@property (nonatomic, assign) CGFloat  cornerRadius;
 @property (nonatomic,  copy ) NSString *text;
-@property (nonatomic, assign) CGFloat aalpha;
+@property (nonatomic, assign) CGFloat  aalpha;
 
 - (void)showLoading:(UIView *)superView animated:(BOOL)animated;
 

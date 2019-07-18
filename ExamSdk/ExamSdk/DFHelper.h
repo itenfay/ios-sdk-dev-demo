@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger, ImageLoadingState) {
 
 @interface DFHelper : NSObject
 
-@property (nonatomic, assign) id<DFLoadImageDelegate>delegate;
+@property (nonatomic, weak) id<DFLoadImageDelegate>delegate;
 
 /**
  *	@brief	使用Http协议
@@ -35,6 +35,7 @@ typedef NS_ENUM(NSUInteger, ImageLoadingState) {
 - (void)imageLoadingDidFinishing:(UIImage *)image;
 
 @optional
+
 - (void)imageLoading:(DFHelper *)helper didFailWithError:(NSError *)error;
 
 @end

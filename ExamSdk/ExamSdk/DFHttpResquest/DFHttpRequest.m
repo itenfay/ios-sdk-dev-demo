@@ -8,9 +8,9 @@
 #import "DFHttpRequest.h"
 
 #if __has_feature(objc_arc)
-#define UQAUTORELEASE(X) X
+#define DFAUTORELEASE(X) (X)
 #else
-#define UQAUTORELEASE(X) [X autorelease]
+#define DFAUTORELEASE(X) [(X) autorelease]
 #endif
 
 #define HTTP_STATUS_OK 200
@@ -18,18 +18,19 @@
 typedef enum {
     HTTP_GET  = 0,
     HTTP_POST = 1
-} UQHTTPMethod;
+} DFHTTPMethod;
 
 static NSString *const kHTTPHeaderLanguage = @"zh";
 NSString *const kHTTPRequestError = @"EncodedProcessMessage";
-typedef void (^UQHTTPResponseResultHandler)(NSInteger state, NSData *data, NSError *error);
+
+typedef void (^DFHTTPResponseResultHandler)(NSInteger state, NSData *data, NSError *error);
 
 @interface DFHttpRequest () <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
-@property (nonatomic, retain) NSURL *url;
-@property (nonatomic, retain) NSData *HTTPBody;
-@property (nonatomic, retain) NSMutableData *result;
-@property (nonatomic, retain) NSURLConnection *urlConnection;
-@property (nonatomic,  copy ) UQHTTPResponseResultHandler resultHandler;
+@property (nonatomic, strong) NSURL *url;
+@property (nonatomic, strong) NSData *HTTPBody;
+@property (nonatomic, strong) NSMutableData *result;
+@property (nonatomic, strong) NSURLConnection *urlConnection;
+@property (nonatomic,  copy ) DFHTTPResponseResultHandler resultHandler;
 @end
 
 @implementation DFHttpRequest
@@ -42,11 +43,11 @@ typedef void (^UQHTTPResponseResultHandler)(NSInteger state, NSData *data, NSErr
 @synthesize acceptLanguage;
 
 - (void)dealloc {
-    self.url = nil;
-    self.HTTPBody = nil;
-    self.result = nil;
-    self.urlConnection = nil;
-    self.resultHandler = nil;
+    self.url            = nil;
+    self.HTTPBody       = nil;
+    self.result         = nil;
+    self.urlConnection  = nil;
+    self.resultHandler  = nil;
     self.acceptLanguage = nil;
 #if !__has_feature(objc_arc)
     [super dealloc];
@@ -57,7 +58,7 @@ typedef void (^UQHTTPResponseResultHandler)(NSInteger state, NSData *data, NSErr
 {
     self = [super init];
     if (self) {
-        self.timeoutInterval = 10.0;
+        self.timeoutInterval = 10.f;
         self.acceptLanguage = kHTTPHeaderLanguage;
         self.result = [NSMutableData dataWithCapacity:0];
     }
@@ -79,9 +80,10 @@ typedef void (^UQHTTPResponseResultHandler)(NSInteger state, NSData *data, NSErr
     [self startAsychronousRequest:HTTP_POST];
 }
 
-- (void)startAsychronousRequest:(UQHTTPMethod)method
+- (void)startAsychronousRequest:(DFHTTPMethod)method
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:self.timeoutInterval];
+    
     switch (method) {
         case HTTP_GET:
             [request setHTTPMethod:@"GET"];
@@ -94,8 +96,9 @@ typedef void (^UQHTTPResponseResultHandler)(NSInteger state, NSData *data, NSErr
         default:
             break;
     }
+    
     [request setValue:self.acceptLanguage forHTTPHeaderField:@"Accept-Language"];
-    self.urlConnection = UQAUTORELEASE([[NSURLConnection alloc] initWithRequest:request
+    self.urlConnection = DFAUTORELEASE([[NSURLConnection alloc] initWithRequest:request
                                                                        delegate:self
                                                                startImmediately:NO]);
     [[NSRunLoop currentRunLoop] runMode:NSRunLoopCommonModes beforeDate:[NSDate distantFuture]];
@@ -113,21 +116,25 @@ typedef void (^UQHTTPResponseResultHandler)(NSInteger state, NSData *data, NSErr
 {
     NSString *authMethod = challenge.protectionSpace.authenticationMethod;
     if ([authMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        [self UQTrustHTTPSRequest:challenge];
+        [self trustHTTPSRequest:challenge];
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     [self.result setLength:0];
+    
     NSHTTPURLResponse *HTTPURLResponse = (NSHTTPURLResponse *)response;
     NSInteger statusCode = HTTPURLResponse.statusCode;
+    
     if (statusCode != HTTP_STATUS_OK) {
         NSDictionary *fields = HTTPURLResponse.allHeaderFields;
         NSError *error = [NSError errorWithDomain:self.url.host code:statusCode userInfo:fields];
+        
         if (self.resultHandler) {
             self.resultHandler(HTTP_ERROR, nil, error);
         }
+        
         [self cancelAsychronousRequest];
     }
 }
@@ -152,11 +159,12 @@ typedef void (^UQHTTPResponseResultHandler)(NSInteger state, NSData *data, NSErr
     }
 }
 
-- (void)UQTrustHTTPSRequest:(NSURLAuthenticationChallenge *)challenge
+- (void)trustHTTPSRequest:(NSURLAuthenticationChallenge *)challenge
 {
     NSURLCredential *credential;
     NSURLProtectionSpace *protectionSpace;
     SecTrustRef trust;
+    
     assert(challenge != nil);
     protectionSpace = [challenge protectionSpace];
     assert(protectionSpace != nil);
@@ -164,9 +172,11 @@ typedef void (^UQHTTPResponseResultHandler)(NSInteger state, NSData *data, NSErr
     assert(trust != NULL);
     credential = [NSURLCredential credentialForTrust:trust];
     assert(credential != nil);
+    
     if (SecTrustGetCertificateCount(trust) > 0) {
         SecTrustGetCertificateAtIndex(trust, 0);
     }
+    
     [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
 }
 

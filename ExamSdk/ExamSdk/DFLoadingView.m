@@ -47,7 +47,7 @@ CGFloat kMargin = 10;
     label.backgroundColor = [UIColor clearColor];
     label.textAlignment = NSTextAlignmentLeft;
     [contentView addSubview:label];
-
+    
     CGPoint aCenter = self.center;
     CGFloat aWidth = anIndicator.frame.size.width + label.frame.size.width + 2.5*kMargin;
     CGFloat aHeight = anIndicator.frame.size.height + 2*kMargin;
@@ -67,9 +67,9 @@ CGFloat kMargin = 10;
 
 - (void)dismissLoading:(BOOL)animated {
     if (animated) {
-         //暂未处理
+        //暂未处理
     } else {
-         //暂未处理
+        //暂未处理
     }
     [self removeFromSuperview];
 }

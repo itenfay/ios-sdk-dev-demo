@@ -11,7 +11,7 @@
 typedef void (^DFImageLoadingBlock)(NSInteger state, UIImage *image, NSError *error);
 
 @interface DFHelper ()
-@property (nonatomic, retain) DFHttpRequest *httpRequest;
+@property (nonatomic, strong) DFHttpRequest *httpRequest;
 @property (nonatomic,  copy ) DFImageLoadingBlock loadingHandler;
 @end
 
@@ -22,17 +22,18 @@ typedef void (^DFImageLoadingBlock)(NSInteger state, UIImage *image, NSError *er
 
 - (void)loadImage:(NSURL *)url {
     _httpRequest = [[DFHttpRequest alloc] init];
+    __weak typeof(self) weak_self = self;
     [_httpRequest sendAsychronousGet:url completionHandler:^(NSInteger state,
                                                              NSData *data,
                                                              NSError *error) {
         if (state == HTTP_OK) {
             UIImage *image = [UIImage imageWithData:data];
-            if ([self.delegate respondsToSelector:@selector(imageLoadingDidFinishing:)]) {
-                [self.delegate imageLoadingDidFinishing:image];
+            if ([weak_self.delegate respondsToSelector:@selector(imageLoadingDidFinishing:)]) {
+                [weak_self.delegate imageLoadingDidFinishing:image];
             }
         } else {
-            if ([self.delegate respondsToSelector:@selector(imageLoading:didFailWithError:)]) {
-                [self.delegate imageLoading:self didFailWithError:error];
+            if ([weak_self.delegate respondsToSelector:@selector(imageLoading:didFailWithError:)]) {
+                [weak_self.delegate imageLoading:weak_self didFailWithError:error];
             }
         }
     }];
@@ -47,7 +48,7 @@ typedef void (^DFImageLoadingBlock)(NSInteger state, UIImage *image, NSError *er
         if (!error) {
             UIImage *image = [UIImage imageWithData:data];
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (self.loadingHandler) self.loadingHandler(Loading_OK, image, error);
+                !self.loadingHandler ?: self.loadingHandler(Loading_OK, image, error);
             });
         } else {
             if (self.loadingHandler) {
