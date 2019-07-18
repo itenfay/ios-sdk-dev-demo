@@ -14,9 +14,11 @@
 ## 预览图
 
 - SDK Library
+
 ![](https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/SimpleSDK_Lib.png)
 
 - 实现功能
+
 ![](https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/simple_sdk_preview.gif)
 
 ## 制作方法
