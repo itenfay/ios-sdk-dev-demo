@@ -65,7 +65,8 @@ Mach-O Type选项有Dynamic Library, Static Library, Bundle, Executable等，选
     - 开发第三方SDK的需要。
 
 5. Project -> Target -> Build Settings 搜索 Dead Code Stripping
-在Link选项中将Dead Code Stripping改为NO（默认是YES）。确定 Dead Code（代码被定义但从未被调用）被剥离，去掉冗余的代码，即使一点冗余代码，编译后体积也是很可观的。
+
+在Link选项中将Dead Code Stripping改为NO (默认是YES)。确定 Dead Code（代码被定义但从未被调用）被剥离，去掉冗余的代码，即使一点冗余代码，编译后体积也是很可观的。
 
 6. Project -> Target -> Build Settings 搜索 Debug Information Format
 
@@ -85,21 +86,21 @@ Mach-O Type选项有Dynamic Library, Static Library, Bundle, Executable等，选
 
 10. 合并库和查看库信息
 
-- 查看架构：使用 lipo -info 查看可执行文件(.a  .framework的可执行文件)架构。
+- 查看架构：使用 lipo -info 查看可执行文件(.a  .framework)架构。
 ```
 lipo -info ExamSimpleSdk.framework/ExamSimpleSdk
 
 lipo -info xxx.a
 ```
 
-- 合并架构：使用 lipo -create  模拟器可执行文件绝对路径  真机可执行文件绝对路径  -output 输出目录/可执行文件。
+- 合并架构：使用 lipo -create  模拟器可执行文件绝对路径  真机可执行文件绝对路径  -output  输出目录/可执行文件。
 ```
 lipo -create /Users/xxx/Library/Developer/Xcode/DerivedData/dgfkluumuexoxhcapzidtsmdgqcj/Build/Products/Release-iphonesimulator/ExamSimpleSdk.framework/ExamSimpleSdk /Users/xxx/Library/Developer/Xcode/DerivedData/dgfkluumuexoxhcapzidtsmdgqcj/Build/Products/Release-iphoneos/ExamSimpleSdk.framework/ExamSimpleSdk -output /Users/xxx/Desktop/ExamSimpleSdk 
 
 lipo -create /Users/xxx/Library/Developer/Xcode/DerivedData/dgfkluumuexoxhcapzidtsmdgqcj/Build/Products/Release-iphonesimulator/xxx.a /Users/xxx/Library/Developer/Xcode/DerivedData/dgfkluumuexoxhcapzidtsmdgqcj/Build/Products/Release-iphoneos/xxx.a -output /Users/xxx/Desktop/xxx.a 
 ```
 
-- 移除架构，如:
+- 移除架构
 ```
 lipo -remove x86_64 ExamSimpleSdk.framework/ExamSimpleSdk -output ExamSimpleSdk.framework/ExamSimpleSdk
 ```
