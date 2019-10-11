@@ -4,44 +4,49 @@
 
 # ios-sdk-dev-demo
 
-一个简单封装的iOS SDK，编写于2015年3月23日。ExamSdk为SDK源码，ExamSdkDemo为集成SDK的demo，代码有点旧，勿喷！当需要制作自己的SDK时，可以参考本项目或者下面的[制作方法](#制作方法)。
+&emsp; 一个简单封装的 iOS SDK，编写于2015年3月23日。ExamSdk 为 SDK 源码，ExamSdkDemo 为集成 SDK 的 demo，代码有点旧，勿喷！当需要制作自己的 SDK 时，可以参考本项目或者下面的[制作方法](#制作方法)。
 
 ## 技术交流群(群号:155353383)
 
-欢迎加入技术交流群 ，一起探讨技术问题。<br />
-![](https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/qq155353383.jpg)
+- 欢迎加入技术交流群，一起探讨技术问题。
+
+<div align=left>
+&emsp; <img src="https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/qq155353383.jpg" width="20%" />
+</div>
 
 ## 预览图
 
 - SDK Library
 
-![](https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/SimpleSDK_Lib.png)
+&emsp; ![](https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/SimpleSDK_Lib.png)
 
 - 实现功能
 
-![](https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/simple_sdk_preview.gif)
+<div align=left>
+&emsp; <img src="https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/simple_sdk_preview.gif" width="30%" />
+</div>
 
 ## 制作方法
 
 1. 创建模板
 
-![](https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/lib_templete_create.png)
+&emsp; ![](https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/lib_templete_create.png)
 
-①是创建.framework模板，②是创建.a模板。
+&emsp; ①是创建.framework模板，②是创建.a模板。
 
 2. Project -> Target -> Build Settings 搜索 iOS Deployment Target
 
-选择SDK的最小兼容部署，如iOS 8.0。
+&emsp; 选择SDK的最小兼容部署，如iOS 8.0。
 
 3. Project -> Target -> Build Settings 搜索 Valid Architectures
 
-目前支持的架构：真机(arm64 armv7s)、模拟器(i386 x86_64)。不用再支持armv7架构，以后也不需要支持armv7s架构。
+&emsp; 目前支持的架构：真机(arm64 armv7s)、模拟器(i386 x86_64)。不用再支持armv7架构，以后也不需要支持armv7s架构。
 
 4. Project -> Target -> Build Settings 搜索 Mach-O Type
 
-Mach-O Type选项有Dynamic Library, Static Library, Bundle, Executable等，选择Dynamic Library制作动态库，Static Library制作静态库，Bundle存储资源文件。
+&emsp; Mach-O Type选项有Dynamic Library, Static Library, Bundle, Executable等，选择Dynamic Library制作动态库，Static Library制作静态库，Bundle存储资源文件。
 
-补充知识：
+&emsp; 补充知识：
 
 - 库是共享程序代码的方式，一般分为静态库和动态库。
     - 静态库：链接时完整地拷贝至可执行文件中，被多次使用就有多份冗余拷贝。
@@ -66,27 +71,28 @@ Mach-O Type选项有Dynamic Library, Static Library, Bundle, Executable等，选
 
 5. Project -> Target -> Build Settings 搜索 Dead Code Stripping
 
-在Link选项中将Dead Code Stripping改为NO (默认是YES)。确定 Dead Code（代码被定义但从未被调用）被剥离，去掉冗余的代码，即使一点冗余代码，编译后体积也是很可观的。
+&emsp; 在Link选项中将Dead Code Stripping改为NO (默认是YES)。确定 Dead Code（代码被定义但从未被调用）被剥离，去掉冗余的代码，即使一点冗余代码，编译后体积也是很可观的。
 
 6. Project -> Target -> Build Settings 搜索 Debug Information Format
 
-在Debug Information Format选项中将DWARF with dSYM File修改成DWARF，不生成dSYM文件。
+&emsp; 在Debug Information Format选项中将DWARF with dSYM File修改成DWARF，不生成dSYM文件。
 
 7. Project -> Target -> Build Phases -> Complie Sources
 
-添加要编译.h .m文件，Xcode自动将.m文件添加到Complie Sources中，同时可以使用-fno-objc-arc, fobjc-arc分别针对特定的.m文件进行MRC，ARC内存管理。
+&emsp; 添加要编译.h .m文件，Xcode自动将.m文件添加到Complie Sources中，同时可以使用-fno-objc-arc, fobjc-arc分别针对特定的.m文件进行MRC，ARC内存管理。
 
 8. Project -> Target -> Build Phases -> Headers
 
-将工程Project要暴露的接口.h头文件拖到Public中。framework支持模块化，SDK命名尽量不要头文件重名，以便集成SDK时模块(@import xxx)不能使用。SDK资源放到一个bundle下，统一进行管理与调用。
+&emsp; 将工程Project要暴露的接口.h头文件拖到Public中。framework支持模块化，SDK命名尽量不要头文件重名，以便集成SDK时模块(@import xxx)不能使用。SDK资源放到一个bundle下，统一进行管理与调用。
 
 9. Project -> Edit Scheme -> Run -> Build Configuration
 
-在Build Configuration选择Release，通过快捷键command+R 或者 command+B 和选择真机或模拟器输出Release版本SDK。然后在Products右击Show in Finder找到SDK。
+&emsp; 在Build Configuration选择Release，通过快捷键command+R 或者 command+B 和选择真机或模拟器输出Release版本SDK。然后在Products右击Show in Finder找到SDK。
 
 10. 合并库和查看库信息
 
 - 查看架构：使用 lipo -info 查看可执行文件(.a  .framework)架构。
+
 ```
 lipo -info ExamSimpleSdk.framework/ExamSimpleSdk
 
@@ -94,6 +100,7 @@ lipo -info xxx.a
 ```
 
 - 合并架构：使用 lipo -create  模拟器可执行文件绝对路径  真机可执行文件绝对路径  -output  输出目录/可执行文件。
+
 ```
 lipo -create /Users/xxx/Library/Developer/Xcode/DerivedData/dgfkluumuexoxhcapzidtsmdgqcj/Build/Products/Release-iphonesimulator/ExamSimpleSdk.framework/ExamSimpleSdk /Users/xxx/Library/Developer/Xcode/DerivedData/dgfkluumuexoxhcapzidtsmdgqcj/Build/Products/Release-iphoneos/ExamSimpleSdk.framework/ExamSimpleSdk -output /Users/xxx/Desktop/ExamSimpleSdk 
 
