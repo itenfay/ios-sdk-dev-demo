@@ -4,7 +4,7 @@
 
 ## ios-sdk-dev-demo
 
-- 一个简单封装的iOS SDK，编写于2015年3月23日， 提供demo及制作教程。
+- 一个简单封装的iOS SDK，编写于2015年3月23日，提供demo及制作教程。
 
 - 目录说明
     - ExamSdk为**SDK源码**。
@@ -98,25 +98,29 @@ Mach-O Type选项有Dynamic Library, Static Library, Bundle, Executable等，选
 - 查看架构：使用 lipo -info 查看可执行文件(.a  .framework)架构。
 
 ```
-## For frameworks
+# For frameworks.
 lipo -info ExamSimpleSdk.framework/ExamSimpleSdk
 
-## For static libraries
+# For static libraries.
 lipo -info xxx.a
 ```
 
 - 合并架构：使用 lipo -create  模拟器可执行文件绝对路径  真机可执行文件绝对路径  -output  输出目录/可执行文件。
 
 ```
-## For frameworks
+# For frameworks. After the command is executed, replace the executable file in the original library.
 lipo -create /Users/xxx/Library/Developer/Xcode/DerivedData/dgfkluumuexoxhcapzidtsmdgqcj/Build/Products/Release-iphonesimulator/ExamSimpleSdk.framework/ExamSimpleSdk /Users/xxx/Library/Developer/Xcode/DerivedData/dgfkluumuexoxhcapzidtsmdgqcj/Build/Products/Release-iphoneos/ExamSimpleSdk.framework/ExamSimpleSdk -output /Users/xxx/Desktop/ExamSimpleSdk 
 
-## For static libraries
+# For static libraries. After the command is executed, replace the executable file in the original library.
 lipo -create /Users/xxx/Library/Developer/Xcode/DerivedData/dgfkluumuexoxhcapzidtsmdgqcj/Build/Products/Release-iphonesimulator/xxx.a /Users/xxx/Library/Developer/Xcode/DerivedData/dgfkluumuexoxhcapzidtsmdgqcj/Build/Products/Release-iphoneos/xxx.a -output /Users/xxx/Desktop/xxx.a 
 ```
 
 - 移除架构
 
 ```
+# For frameworks. After the command is executed, replace the executable file in the original library.
 lipo -remove x86_64 ExamSimpleSdk.framework/ExamSimpleSdk -output ExamSimpleSdk.framework/ExamSimpleSdk
+
+# For static libraries. After the command is executed, replace the executable file in the original library.
+lipo -remove armv7s xxx.a -output xxx.a
 ```
