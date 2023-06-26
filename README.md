@@ -1,4 +1,4 @@
-[如果此项目能帮助到你，就请你给一颗星。谢谢！(If this project can help you, please give it a star. Thanks!)](https://github.com/dgynfi/ios-sdk-dev-demo)
+[如果此项目能帮助到你，就请你给一颗星。谢谢！(If this project can help you, please give it a star. Thanks!)](https://github.com/chenxing640/ios-sdk-dev-demo)
 
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](LICENSE)&nbsp;
 
@@ -15,26 +15,26 @@
 ## Group (ID:614799921)
 
 <div align=left>
-&emsp; <img src="https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/g614799921.jpg" width="30%" />
+&emsp; <img src="https://github.com/chenxing640/ios-sdk-dev-demo/raw/master/images/g614799921.jpg" width="30%" />
 </div>
 
 ## Preview
 
 - SDK Library
 
-&emsp; ![](https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/SimpleSDK_Lib.png)
+&emsp; ![](https://github.com/chenxing640/ios-sdk-dev-demo/raw/master/images/SimpleSDK_Lib.png)
 
 - 实现功能
 
 <div align=left>
-&emsp; <img src="https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/simple_sdk_preview.gif" width="30%" />
+&emsp; <img src="https://github.com/chenxing640/ios-sdk-dev-demo/raw/master/images/simple_sdk_preview.gif" width="30%" />
 </div>
 
 ## Production tutorials
 
 1. 创建模板
 
-&emsp; ![](https://github.com/dgynfi/ios-sdk-dev-demo/raw/master/images/lib_templete_create.png)
+&emsp; ![](https://github.com/chenxing640/ios-sdk-dev-demo/raw/master/images/lib_templete_create.png)
 
 ①是创建.framework模板，②是创建.a模板。
 
